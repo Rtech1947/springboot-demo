@@ -20,7 +20,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public Task createTask(@RequestBody CreateTaskModel request) {
+    public List<Task> createTask(@RequestBody CreateTaskModel request) {
 
         return taskService.create(request);
     }
@@ -32,7 +32,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public Task updateStatus(
+    public List<Task> updateStatus(
             @PathVariable int id,
             @RequestParam boolean completed) {
 
@@ -40,14 +40,11 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteTask(@PathVariable int id) {
+    public List<Task> deleteTask(@PathVariable int id) {
 
-        boolean deleted = taskService.delete(id);
+        List<Task> tasks = taskService.delete(id);
 
-        if (deleted)
-            return "Task Deleted";
-
-        return "Task Not Found";
+        return tasks;
     }
 
 }

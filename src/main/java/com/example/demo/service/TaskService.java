@@ -14,7 +14,7 @@ public class TaskService {
     private final List<Task> tasks = new ArrayList<>();
     private int idCounter = 1;
 
-    public Task create(CreateTaskModel request) {
+    public List<Task> create(CreateTaskModel request) {
 
         Task task = new Task();
 
@@ -26,14 +26,14 @@ public class TaskService {
 
         tasks.add(task);
 
-        return task;
+        return tasks;
     }
 
     public List<Task> getAll() {
         return tasks;
     }
 
-    public Task updateStatus(int id, boolean completed) {
+    public List<Task> updateStatus(int id, boolean completed) {
 
         for (Task task : tasks) {
 
@@ -41,16 +41,17 @@ public class TaskService {
 
                 task.setCompleted(completed);
 
-                return task;
+                return tasks;
             }
         }
 
         return null;
     }
 
-    public boolean delete(int id) {
+    public List<Task> delete(int id) {
 
-        return tasks.removeIf(task -> task.getId() == id);
+        tasks.removeIf(task -> task.getId() == id);
+        return tasks;
     }
 
 }
