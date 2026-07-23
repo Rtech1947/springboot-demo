@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Task;
+import com.example.demo.model.CreateTaskModel;
 import com.example.demo.service.TaskService;
 
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,9 @@ public class TaskController {
     }
 
     @PostMapping
-    public Task createTask(@RequestBody Task task) {
+    public Task createTask(@RequestBody CreateTaskModel request) {
 
-        return taskService.create(task);
+        return taskService.create(request);
     }
 
     @GetMapping
